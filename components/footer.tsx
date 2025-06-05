@@ -1,8 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Facebook, Twitter, Youtube, Instagram, Mail, Phone, MapPin } from "lucide-react"
 import Image from "next/image"
-import Link from "next/link"
+import ScrollToTopLink from "./scroll-to-top-link"
+import { useState } from "react"
+import { subscribeToNewsletter } from "@/lib/actions/newsletter-actions"
 
 export default function Footer() {
   const quickLinks = [
@@ -26,6 +30,60 @@ export default function Footer() {
     { name: "Instagram", icon: Instagram, href: "#" },
   ]
 
+  function NewsletterForm() {
+    const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null)
+    const [isSubmitting, setIsSubmitting] = useState(false)
+
+    const handleSubmit = async (formData: FormData) => {
+      setIsSubmitting(true)
+      setMessage(null)
+
+      const result = await subscribeToNewsletter(formData)
+      setMessage({
+        type: result.success ? "success" : "error",
+        text: result.message,
+      })
+
+      if (result.success) {
+        const form = document.getElementById("newsletter-form") as HTMLFormElement
+        form?.reset()
+      }
+
+      setIsSubmitting(false)
+    }
+
+    return (
+      <div className="space-y-4">
+        <h3 className="text-lg font-semibold">뉴스레터</h3>
+        <p className="text-slate-300 text-sm">개혁신당의 최신 소식을 이메일로 받아보세요.</p>
+
+        {message && (
+          <div
+            className={`text-sm p-2 rounded ${
+              message.type === "success" ? "bg-green-100 text-green-800" : "bg-red-100 text-red-800"
+            }`}
+          >
+            {message.text}
+          </div>
+        )}
+
+        <form id="newsletter-form" action={handleSubmit} className="flex space-x-2">
+          <Input
+            type="email"
+            name="email"
+            placeholder="이메일 주소"
+            className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
+            required
+            disabled={isSubmitting}
+          />
+          <Button type="submit" size="sm" className="bg-primary hover:bg-primary/90 text-white" disabled={isSubmitting}>
+            {isSubmitting ? "구독 중..." : "구독"}
+          </Button>
+        </form>
+      </div>
+    )
+  }
+
   return (
     <footer className="bg-slate-900 text-white">
       <div className="container mx-auto px-4 py-12">
@@ -46,14 +104,14 @@ export default function Footer() {
               {socialLinks.map((social) => {
                 const Icon = social.icon
                 return (
-                  <Link
+                  <ScrollToTopLink
                     key={social.name}
                     href={social.href}
                     className="text-slate-400 hover:text-primary transition-colors duration-200"
                     aria-label={social.name}
                   >
                     <Icon className="h-5 w-5" />
-                  </Link>
+                  </ScrollToTopLink>
                 )
               })}
             </div>
@@ -65,9 +123,12 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
-                  <Link href={link.href} className="text-slate-300 hover:text-primary transition-colors duration-200">
+                  <ScrollToTopLink
+                    href={link.href}
+                    className="text-slate-300 hover:text-primary transition-colors duration-200"
+                  >
                     {link.name}
-                  </Link>
+                  </ScrollToTopLink>
                 </li>
               ))}
             </ul>
@@ -93,20 +154,7 @@ export default function Footer() {
           </div>
 
           {/* Newsletter */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold">뉴스레터</h3>
-            <p className="text-slate-300 text-sm">개혁신당의 최신 소식을 이메일로 받아보세요.</p>
-            <div className="flex space-x-2">
-              <Input
-                type="email"
-                placeholder="이메일 주소"
-                className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-400"
-              />
-              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
-                구독
-              </Button>
-            </div>
-          </div>
+          <NewsletterForm />
         </div>
 
         {/* Bottom Section */}
@@ -114,9 +162,13 @@ export default function Footer() {
           <div className="flex flex-col lg:flex-row justify-between items-center space-y-4 lg:space-y-0">
             <div className="flex flex-wrap gap-6 text-sm text-slate-400">
               {legalLinks.map((link) => (
-                <Link key={link.name} href={link.href} className="hover:text-primary transition-colors duration-200">
+                <ScrollToTopLink
+                  key={link.name}
+                  href={link.href}
+                  className="hover:text-primary transition-colors duration-200"
+                >
                   {link.name}
-                </Link>
+                </ScrollToTopLink>
               ))}
             </div>
             <p className="text-sm text-slate-400">© {new Date().getFullYear()} 개혁신당. All rights reserved.</p>

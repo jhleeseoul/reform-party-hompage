@@ -13,7 +13,7 @@ export default function Header() {
   const navigation = [
     { name: "홈", href: "/" },
     { name: "당 소개", href: "/party" },
-    { name: "정책", href: "/policy" },
+    { name: "정책", href: "/policy/details" },
     { name: "보도자료", href: "/news" },
     { name: "참여", href: "/participate" },
     { name: "자유게시판", href: "/community" },
@@ -44,11 +44,11 @@ export default function Header() {
 
           {/* CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/5">
-              당원가입
+            <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary/5" asChild>
+              <Link href="/membership">당원가입</Link>
             </Button>
-            <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
-              후원하기
+            <Button size="sm" className="bg-primary hover:bg-primary/90 text-white" asChild>
+              <Link href="/donate">후원하기</Link>
             </Button>
           </div>
 
@@ -73,10 +73,12 @@ export default function Header() {
                   </Link>
                 ))}
                 <div className="pt-4 space-y-3">
-                  <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary/5">
-                    당원가입
+                  <Button variant="outline" className="w-full border-primary text-primary hover:bg-primary/5" asChild>
+                    <Link href="/membership">당원가입</Link>
                   </Button>
-                  <Button className="w-full bg-primary hover:bg-primary/90 text-white">후원하기</Button>
+                  <Button className="w-full bg-primary hover:bg-primary/90 text-white" asChild>
+                    <Link href="/donate">후원하기</Link>
+                  </Button>
                 </div>
               </div>
             </SheetContent>

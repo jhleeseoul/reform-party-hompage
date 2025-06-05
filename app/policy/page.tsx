@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Briefcase, GraduationCap, Heart, Leaf, Shield, Smartphone, Search, ArrowRight } from "lucide-react"
 import Header from "@/components/header"
 import Footer from "@/components/footer"
+import Link from "next/link"
 
 export default function PolicyPage() {
   const policyCategories = [
@@ -183,9 +184,13 @@ export default function PolicyPage() {
                         <h4 className="font-semibold text-slate-900 mb-3">예상 효과</h4>
                         <p className="text-slate-600 text-sm leading-relaxed">{policy.impact}</p>
                       </div>
-                      <Button className="w-full bg-primary hover:bg-primary/90 text-white">
-                        자세히 보기
-                        <ArrowRight className="ml-2 h-4 w-4" />
+                      <Button className="w-full bg-primary hover:bg-primary/90 text-white" asChild>
+                        <Link
+                          href={`/policy/${policy.category === "경제·일자리" ? "economic-innovation" : policy.category === "교육" ? "education-reform" : "youth-housing-support"}`}
+                        >
+                          자세히 보기
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Link>
                       </Button>
                     </div>
                   </div>
@@ -206,11 +211,11 @@ export default function PolicyPage() {
               제안해주세요.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90">
-                정책 제안하기
+              <Button size="lg" variant="secondary" className="bg-white text-primary hover:bg-white/90" asChild>
+                <Link href="/policy/propose">정책 제안하기</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10">
-                토론 참여하기
+              <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10" asChild>
+                <Link href="/community">토론 참여하기</Link>
               </Button>
             </div>
           </div>
