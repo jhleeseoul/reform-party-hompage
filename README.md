@@ -1,30 +1,66 @@
-# Reform party website
+# Reform Party Website
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
+개혁신당 공식 웹사이트 소스 코드입니다. 이 프로젝트는 정당의 정책 소개와 행사 안내, 당원 모집 등 다양한 정보를 제공하기 위해 제작되었습니다. 배포 도메인은 **[v0-reform-party-website-git-main-jhleeseouls-projects.vercel.app](https://v0-reform-party-website-git-main-jhleeseouls-projects.vercel.app)** 입니다.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/jhleeseouls-projects/v0-reform-party-website)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.dev-black?style=for-the-badge)](https://v0.dev/chat/projects/yyWvdEL61Js)
+## 주요 기능
 
-## Overview
+- **홈**: 핵심 가치와 최신 뉴스, 예정된 행사를 한눈에 볼 수 있는 메인 페이지
+- **정책 소개**: 분야별 정책 목록과 상세 페이지, 정책 제안 폼 제공
+- **행사 참여 신청**: 자원봉사·청원·후원 탭을 포함한 참여 페이지와 행사 신청 폼
+- **뉴스룸**: 최근 소식, 보도자료, 사진·영상 갤러리
+- **당원 가입**: 단계별 신청 절차와 결제 폼을 갖춘 가입 페이지
+- **뉴스레터 구독**: 이메일 입력 후 구독할 수 있는 컴포넌트
+- **문의 페이지**: 일반 문의, 당원 가입, 언론 문의, 자원봉사 신청 등을 위한 다양한 폼
 
-This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.dev](https://v0.dev).
+## 기술 스택
 
-## Deployment
+- **Next.js 15**
+- **TypeScript**
+- **Tailwind CSS**
+- **Radix UI / shadcn/ui 컴포넌트**
+- **pnpm** 패키지 매니저
 
-Your project is live at:
+## 설치 및 실행
 
-**[https://vercel.com/jhleeseouls-projects/v0-reform-party-website](https://vercel.com/jhleeseouls-projects/v0-reform-party-website)**
+1. 저장소 클론 후 의존성 설치
+   ```bash
+   pnpm install
+   ```
+2. 개발 서버 실행
+   ```bash
+   pnpm dev
+   ```
+   기본적으로 `http://localhost:3000`에서 앱을 확인할 수 있습니다.
 
-## Build your app
+## 빌드 및 배포
 
-Continue building your app on:
+- 프로덕션 빌드
+  ```bash
+  pnpm build
+  ```
+- 로컬에서 빌드 결과 실행
+  ```bash
+  pnpm start
+  ```
 
-**[https://v0.dev/chat/projects/yyWvdEL61Js](https://v0.dev/chat/projects/yyWvdEL61Js)**
+Next.js 빌드를 통해 생성된 정적 파일을 Vercel에 배포하며, 도메인은 위에 명시한 주소로 설정되어 있습니다. `next.config.mjs`에서 타입스크립트와 ESLint 오류를 빌드 시 무시하도록 설정되어 있으므로 배포 시 주의합니다.【F:next.config.mjs†L1-L13】
 
-## How It Works
+## 주요 디렉터리 구조
 
-1. Create and modify your project using [v0.dev](https://v0.dev)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+```
+app/              Next.js App Router 페이지와 레이아웃
+components/       재사용 가능한 React 컴포넌트 및 UI 요소
+hooks/            커스텀 React 훅
+lib/              서버 액션과 유틸리티 함수
+public/           정적 파일 (이미지, 아이콘 등)
+styles/           전역 스타일(Tailwind CSS)
+next.config.mjs   Next.js 설정 파일
+postcss.config.mjs PostCSS 설정
+tailwind.config.ts Tailwind CSS 설정
+```
+
+각 페이지는 `app/` 폴더 하위에 디렉터리별로 구성되어 있으며, 예를 들어 `app/policy`에는 정책 목록과 상세 페이지가, `app/participate`에는 자원봉사·청원·후원 관련 페이지가 위치합니다.
+
+## 라이선스
+
+본 저장소는 개혁신당 웹사이트 구축을 위한 예제 코드로 사용되며 별도의 라이선스 조항이 명시되지 않았습니다.
