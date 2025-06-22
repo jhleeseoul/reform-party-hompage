@@ -1,6 +1,6 @@
 # Reform Party Website
 
-개혁신당 공식 웹사이트 소스 코드입니다. 이 프로젝트는 정당의 정책 소개와 행사 안내, 당원 모집 등 다양한 정보를 제공하기 위해 제작되었습니다. 배포 도메인은 **[v0-reform-party-website-git-main-jhleeseouls-projects.vercel.app](https://v0-reform-party-website-git-main-jhleeseouls-projects.vercel.app)** 입니다.
+정당 웹사이트 소스 코드입니다. 이 프로젝트는 정당의 정책 소개와 행사 안내, 당원 모집 등 다양한 정보를 제공하기 위해 제작되었습니다. 배포 도메인은 **[v0-reform-party-website-git-main-jhleeseouls-projects.vercel.app](https://v0-reform-party-website-git-main-jhleeseouls-projects.vercel.app)** 입니다. 정당의 공식 웹사이트가 아닙니다.
 
 ## 주요 기능
 
@@ -63,4 +63,4 @@ tailwind.config.ts Tailwind CSS 설정
 
 ## 라이선스
 
-본 저장소는 개혁신당 웹사이트 구축을 위한 예제 코드로 사용되며 별도의 라이선스 조항이 명시되지 않았습니다.
+본 저장소는 별도의 라이선스 조항이 명시되지 않았습니다.
